@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Bob",
+    "slug": "Bob",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/bobLogo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/bobLogo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/bobLogo.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/bobLogo.png"
+    }
+  }
+}
