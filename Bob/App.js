@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 
   welcomeLabel: {
     color: "lightblue",
-    fontSize: 45,
+    fontSize: 40,
     fontFamily: "sans-serif-condensed",
     marginTop: -40
   },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 
   loginButtonContainer: {
     marginTop: 80,
-    backgroundColor: "darkgreen",
+    backgroundColor: "#132a36",
     borderRadius: 15,
     alignItems: 'center',
     width: 200,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 
   signUpButtonContainer: {
     marginTop: 25,
-    backgroundColor: "purple",
+    backgroundColor: "#067857",
     padding: 10,
     borderRadius: 15,
     width: 200,
