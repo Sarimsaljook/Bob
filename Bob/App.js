@@ -7,13 +7,12 @@ import { Router, Stack, Scene } from 'react-native-router-flux';
 export default function App() {
   return (
     <Router>
-       <Stack key="root">
-         <Scene key="welcome" component={WelcomeScreen} initial={true}/>
-         <Scene key="login" component={Login} title="Login" />
-         <Scene key="signup" component={SignUp} title="SignUp" />
-      </Stack>
+      <Stack key="root">
+        <Scene key="welcome" component={WelcomeScreen} initial={true}/>
+        <Scene key="login" component={Login} title="Login" />
+        <Scene key="signup" component={SignUp} title="SignUp" />
+     </Stack>
   </Router>
   );
-};
-
+}
 

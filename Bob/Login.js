@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Login() {
+export default function Login({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Login Page!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+   <NavigationContainer>
+       <View>
+           <Text>Login Page</Text>
+       </View>
+    </NavigationContainer>
+    );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });
