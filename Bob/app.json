@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Bob",
-    "slug": "Bob",
+    "slug": "bob",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/bobLogo.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/bobLogo.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1e3a953a-e88c-4fa7-a009-c376b4f49abe"
+      }
+    },
+    "owner": "sarimsaljook"
   }
 }

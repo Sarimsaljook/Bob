@@ -2,11 +2,9 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default function Login({ navigation }) {
   return (
-   <NavigationContainer>
-       <View>
+     <View>
            <Text>Login Page</Text>
        </View>
-    </NavigationContainer>
     );
 }
 
