@@ -17,7 +17,7 @@ export default function WelcomeScreen({ navigation }) {
          <Text style={{ color: 'white', fontSize: 25, fontFamily: 'monospace', marginLeft: -25}}>👤 Login</Text>
      </TouchableOpacity>
 
-     <TouchableOpacity style={styles.signUpButtonContainer} onPress={() => navigation.navigate("SignUp")}>
+     <TouchableOpacity style={styles.signUpButtonContainer} onPress={() => navigation.navigate("Sign Up")}>
          <Text style={{ color: 'white', fontSize: 25, fontFamily: 'monospace'}}>📋 Sign Up</Text>
      </TouchableOpacity>
 
