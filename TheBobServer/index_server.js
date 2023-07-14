@@ -42,8 +42,7 @@ app.post('/api/addUser', (req, res) => {
 });
 
 // API endpoint for user authentication
-app.post('/api/authUser/', (req, res) => {
-  res.send(" API CALLED! ");
+app.post('/api/authUser', (req, res) => {
     const { username, password } = req.body;
   
     // Check if username and password are provided
@@ -64,13 +63,13 @@ app.post('/api/authUser/', (req, res) => {
       dynamoDB.get(params, function(err, data) {
        if(data.Item) { 
         if (err) {
-            res.send({ "Error" : err });
+           res.send({ "Error" : err });
           } else {
             console.log(data.Item);
             if (data.Item.Password == password && data.Item.Username == username) { 
-                res.send({ "result" : "User Found Successfully!" });
+               res.send({ "result" : "User Found Successfully!" });
             } else {
-                res.send({ "result" : "Invalid Username or Password" });
+               res.send({ "result" : "Invalid Username or Password" });
             } 
         }
     } else { res.send({ "result" : "Invalid Username or Password" }) }

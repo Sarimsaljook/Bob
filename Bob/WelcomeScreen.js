@@ -6,7 +6,7 @@ export default function WelcomeScreen({ navigation }) {
   return (
      <View style={styles.container}>
       <LinearGradient
-        colors={['#003973', '#E5E5BE']}
+        colors={['#003973', '#fb5b5a']}
         style={styles.linearGradient}
       >
       <Text style={styles.welcomeLabel}>Welcome To Bob!</Text>
@@ -14,11 +14,11 @@ export default function WelcomeScreen({ navigation }) {
       <Text style={styles.description}>Telling You The Best To Invest</Text>
 
       <TouchableOpacity style={styles.loginButtonContainer} onPress={() => navigation.navigate("Login")}>
-         <Text style={{ color: 'white', fontSize: 25, fontFamily: 'monospace', marginLeft: -25}}>👤 Login</Text>
+         <Text style={{ color: 'white', fontSize: 25, fontFamily: 'monospace'}}>Login</Text>
      </TouchableOpacity>
 
      <TouchableOpacity style={styles.signUpButtonContainer} onPress={() => navigation.navigate("Sign Up")}>
-         <Text style={{ color: 'white', fontSize: 25, fontFamily: 'monospace'}}>📋 Sign Up</Text>
+         <Text style={{ color: 'white', fontSize: 25, fontFamily: 'monospace'}}>Sign Up</Text>
      </TouchableOpacity>
 
       <StatusBar style="auto" />
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     color: "lightblue",
     fontSize: 40,
     fontFamily: "sans-serif-condensed",
-    marginTop: -40
+    marginTop: -25
   },
 
   image: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   loginButtonContainer: {
     marginTop: 80,
     backgroundColor: "#132a36",
-    borderRadius: 15,
+    borderRadius: 25,
     alignItems: 'center',
     width: 200,
     padding: 10
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
     backgroundColor: "#067857",
     padding: 10,
-    borderRadius: 15,
+    borderRadius: 25,
     width: 200,
     alignItems: 'center',
   }

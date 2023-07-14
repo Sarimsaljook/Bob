@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import axios from 'axios';
 
@@ -53,7 +53,9 @@ export default function SignUp({ navigation }) {
      GeneralInvestmentSector: prefferedMarketSector
     }).then((res) => {
      console.log(res);
-     navigation.navigate("Login");
+     Alert.alert('Sign Up Successfull!', 'Now you can use your new account to login and expereince the future of finacial advice.', [
+      {text: 'OK', onPress: () => navigation.navigate("Login")},
+    ]);
     }).catch((err) => console.log(err));
   }
 
