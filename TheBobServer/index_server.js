@@ -1,8 +1,10 @@
 const express = require('express');
 const AWS = require('aws-sdk');
+const cors = require('cors');
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 // Configure AWS SDK with AWS credentials and region
 AWS.config.update({ accessKeyId: 'AKIA4MY5LTISHUEZD5OB', secretAccessKey: '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', region: 'us-east-1' });
@@ -33,7 +35,7 @@ app.post('/api/addUser', (req, res) => {
       console.error('Error adding record:', error);
       res.status(500).json({ error: 'Failed to add record to DynamoDB' });
     } else {
-      console.log('Record added successfully!');
+      console.log('User Record added successfully!');
       res.json({ success: true });
     }
   });
@@ -41,6 +43,7 @@ app.post('/api/addUser', (req, res) => {
 
 // API endpoint for user authentication
 app.post('/api/authUser/', (req, res) => {
+  res.send(" API CALLED! ");
     const { username, password } = req.body;
   
     // Check if username and password are provided

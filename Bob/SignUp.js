@@ -45,17 +45,17 @@ export default function SignUp({ navigation }) {
   const [password, setPassword] = useState('');
 
   const signUpUser = () => {
-    axios.post('https://localhost:5000/api/addUser', {
-      Name: name,
-      Username: email,
-      Password: password,
-      PreferredTradingStyle: prefferedTradingStyle,
-      GeneralInvestmentSector: prefferedMarketSector
+    axios.post('http://192.168.1.155:3000/api/addUser', {
+     Name: name,
+     Username: email,
+     Password: password,
+     PreferredTradingStyle: prefferedTradingStyle,
+     GeneralInvestmentSector: prefferedMarketSector
     }).then((res) => {
-      console.log(res);
-      navigation.navigate("Login");
-    }).catch((err) => console.log(err))
-  };
+     console.log(res);
+     navigation.navigate("Login");
+    }).catch((err) => console.log(err));
+  }
 
   return (
   <ScrollView>
@@ -117,11 +117,11 @@ export default function SignUp({ navigation }) {
       </View>
 
 
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.signUpText} onClick={signUpUser()}>Sign Up</Text>
+      <TouchableOpacity style={styles.loginBtn} onPress={signUpUser}>
+        <Text style={styles.signUpText}>Sign Up</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onAccessibilityTap={() => navigation.navigate("Login")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text style={styles.loginText}>Already Have an Account?</Text>
       </TouchableOpacity>
       </View>
@@ -140,8 +140,8 @@ const styles = StyleSheet.create({
     fontWeight:"bold",
     fontSize: 42,
     color:"#fb5b5a",
-    marginBottom:40,
-    marginTop: 40
+    marginBottom: 20,
+    marginTop: 20
   },
   inputView:{
     width:"80%",
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     height:50,
     alignItems:"center",
     justifyContent:"center",
-    marginTop:20,
+    marginTop:10,
     marginBottom:10
   },
   loginText:{
