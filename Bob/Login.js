@@ -12,9 +12,12 @@ import {
   View,
   Image
 } from 'react-native';
+
 // Components
-import SizedBox from './components/SizedBox';// Components
+import SizedBox from './components/SizedBox';
+
 import axios from 'axios';
+import { isSignedIn } from './AuthStatus.js';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -30,7 +33,10 @@ export default function Login({ navigation }) {
 
     if(apiResponse == "User Found Successfully!") {
       Alert.alert('Login Successfull', 'Welcome Back!', [
-        {text: 'OK', onPress: () => navigation.navigate("Home")},
+        {text: 'OK', onPress: () => {
+          isSignedIn = true;
+          navigation.navigate("Home");
+      }},
       ]);
     } else {
       Alert.alert('Invalid Username or Password', 'Please check your login info and try again.', [
