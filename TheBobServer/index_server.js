@@ -80,6 +80,42 @@ app.post('/api/authUser', (req, res) => {
     }
   });
 
+  // Get Investment preferences end point
+app.post('/api/getInvestmentPrefferences', (req, res) => {
+  const { username } = req.body;
+  
+  // Check if username and password are provided
+  if (!username) {
+    return res.status(400).json({ error: 'Username is required' });
+  }
+
+  var params = {
+      TableName: tableName,
+      Key: {
+        'Username': username
+      },
+      ProjectionExpression: 'GeneralInvestmentSector, PreferredTradingStyle'
+    };
+
+    try {
+    // Call DynamoDB to read the item from the table
+    dynamoDB.get(params, function(err, data) {
+     if(data.Item) { 
+      if (err) {
+         res.send({ "Error" : err });
+        } else {
+          console.log(data.Item);
+          res.send(data.Item);
+         
+      }
+  } else { res.send({ "result" : "Invalid Username" }) }
+    });
+  } catch(err) {
+      res.send({ "Error" : err });
+      console.log(err);
+  }
+});
+
 // Start the server
 app.listen(3000, () => {
   console.log('Server listening on port 3000');

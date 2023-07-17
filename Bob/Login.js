@@ -17,7 +17,6 @@ import {
 import SizedBox from './components/SizedBox';
 
 import axios from 'axios';
-import { isSignedIn } from './AuthStatus.js';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -34,8 +33,23 @@ export default function Login({ navigation }) {
     if(apiResponse == "User Found Successfully!") {
       Alert.alert('Login Successfull', 'Welcome Back!', [
         {text: 'OK', onPress: () => {
-          isSignedIn = true;
-          navigation.navigate("Home");
+          //Second API request to get invesment prefferences
+          axios.post('http://192.168.1.155:3000/api/getInvestmentPrefferences', {
+                  username : email
+               }).then((res) => {
+                    console.log(res.data);
+                    const apiResponse = res.data;
+
+                    const GeneralInvestmentSector = apiResponse.GeneralInvestmentSector;
+                    const PreferredTradingStyle = apiResponse.PreferredTradingStyle;
+
+                    //Navigate To home screen upon login
+                    navigation.navigate("Home", {
+                      GeneralInvestmentSector : GeneralInvestmentSector,
+                      PreferredTradingStyle : PreferredTradingStyle,
+                      username: email
+                    });
+               }).catch((err) => console.log(err));
       }},
       ]);
     } else {
