@@ -1,6 +1,8 @@
 const express = require('express');
 const AWS = require('aws-sdk');
 const cors = require('cors');
+const axios = require('axios');
+
 const app = express();
 
 app.use(express.json());
@@ -15,7 +17,10 @@ const tableName = 'Users';
 // Declare Dynao DB instance
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
-// Create a new record in DynamoDB
+const API_KEY = 'Q7FDGNSK8YH7JRYT';
+const BASE_URL = 'https://www.alphavantage.co/query';
+
+// Add end point to Create a new record in DynamoDB
 app.post('/api/addUser', (req, res) => {
   const { Name, Username, Password, PreferredTradingStyle, GeneralInvestmentSector } = req.body;
 
@@ -114,6 +119,10 @@ app.post('/api/getInvestmentPrefferences', (req, res) => {
       res.send({ "Error" : err });
       console.log(err);
   }
+});
+
+app.get('/api/getBestToInvest', (req, res) => { 
+  
 });
 
 // Start the server
