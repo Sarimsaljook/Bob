@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const API_KEY = '';
+const API_KEY = 'ZCQDT96VBC5WB0KO';
 const BASE_URL = 'https://www.alphavantage.co/query';
 
 // Step 1: Fetch all stock tickers using Alpha Vantage API
@@ -63,15 +63,8 @@ async function getAllStockTickers() {
           previousClose: previousClose,
           percentChange: percentChange,
         };
-      } else {
-        throw new Error(`Invalid response data for ${symbol}`);
       }
     } catch (error) {
-      if (error.message.includes('Invalid response data')) {
-        console.error(`Error fetching stock data for ${symbol}: Invalid response data`);
-      } else {
-        console.error(`Error fetching stock data for ${symbol}: ${error.message}`);
-      }
       return null; // Return null if there's an error fetching data for the symbol
     }
   }
@@ -87,18 +80,26 @@ async function getAllStockTickers() {
   
       // Fetch stock data for all tickers concurrently
       const stockDataPromises = symbols.map((symbol) => getStockData(symbol));
-      const stockData = await Promise.all(stockDataPromises);
+      const stockDataResults = await Promise.all(stockDataPromises);
+    
+      // Filter out null values (skipped stocks) from the results
+      const stockData = stockDataResults.filter((data) => data !== null);
 
       // Sort the stocks in descending order based on percent change
       stockData.sort((a, b) => b.percentChange - a.percentChange);
+
+      const finalTop5List = [];
   
       // Display the top 5 ranked stocks based on percent change
       console.log('Top 5 stocks based on percent change:');
       for (let i = 0; i < 5; i++) {
+        finalTop5List.push(stockData[i].symbol);
         console.log(
           `${i + 1}. ${stockData[i].symbol} - ${stockData[i].percentChange.toFixed(2)}%`
         );
       }
+
+      // res.send()
     } catch (error) {
       console.error('Error:', error.message);
     }
