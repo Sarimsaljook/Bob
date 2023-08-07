@@ -99,7 +99,7 @@ async function getAllStockTickers() {
         );
       }
 
-      // res.send()
+      // res.send();
     } catch (error) {
       console.error('Error:', error.message);
     }
