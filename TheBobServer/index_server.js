@@ -216,9 +216,8 @@ app.get('/api/getBestToInvest', async (req, res) => {
         `${i + 1}. ${stockData[i].symbol} - ${stockData[i].percentChange.toFixed(2)}%`
       );
     }
-    
     res.send(finalTop5List);
-
+    
   } catch (error) {
     console.error('Error:', error.message);
   }

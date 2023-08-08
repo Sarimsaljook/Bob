@@ -23,7 +23,7 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState('');
 
  const loginUser = () => {
-  axios.post('http://192.168.68.80:3000/api/authUser', {
+  axios.post('http://192.168.68.71:3000/api/authUser', {
     username : email,
     password: password
   }).then((res) => {
@@ -34,7 +34,7 @@ export default function Login({ navigation }) {
       Alert.alert('Login Successfull', 'Welcome Back!', [
         {text: 'OK', onPress: () => {
           //Second API request to get invesment prefferences
-          axios.post('http://192.168.68.80:3000/api/getInvestmentPrefferences', {
+          axios.post('http://192.168.68.71:3000/api/getInvestmentPrefferences', {
                   username : email
                }).then((res) => {
                     console.log(res.data);

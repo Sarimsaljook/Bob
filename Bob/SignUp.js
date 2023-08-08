@@ -45,7 +45,7 @@ export default function SignUp({ navigation }) {
   const [password, setPassword] = useState('');
 
   const signUpUser = () => {
-    axios.post('http://192.168.68.80:3000/api/addUser', {
+    axios.post('http://192.168.68.71:3000/api/addUser', {
      Name: name,
      Username: email,
      Password: password,
