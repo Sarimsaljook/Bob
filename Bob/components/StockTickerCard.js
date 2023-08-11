@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Linking, TouchableOpacity } from 'react-native';
 import axios from 'axios';
+import { Alert } from "react-native";
 
-export default function StockTickerCard({ symbol, rank }) {
+export default function StockTickerCard({ symbol, rank, username }) {
 
     const [price, setPrice] = useState();
     const [change, setChange] = useState('');
@@ -29,10 +30,22 @@ export default function StockTickerCard({ symbol, rank }) {
           console.log("Don't know how to open URL: " + searchUrl);
         }
       };
+
+      const handleAddToWatchlist = () => {
+          axios.post('http://192.168.68.71:3000/api/addTickerToWatchlist', { 
+            "username" : username,
+            "stock" : symbol
+           }).then((res) => {
+           Alert.alert(`✅`,`${symbol} added Successfully to your Watchlist.`, [
+            {text: 'OK', onPress: () => {
+  
+        }}]);
+    }).catch((err) => console.log(err));
+      };
     
 
   return (
-     <TouchableOpacity style={styles.card} onPress={handleGoogleSearch}>
+     <TouchableOpacity style={styles.card} onPress={handleGoogleSearch} onLongPress={handleAddToWatchlist}>
            <View style={styles.cardContent}>
              <Text style={{ fontSize: 15, backgroundColor: 'blue', padding: 10, color: 'white', fontWeight: 'bold', borderRadius: 10 }} >{rank}.</Text>
              <Text style={{ fontSize: 20, paddingTop: 10, fontWeight: 'bold' }}>   {symbol} - ${parseFloat(price).toFixed(2)} - </Text>

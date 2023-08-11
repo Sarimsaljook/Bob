@@ -223,6 +223,74 @@ app.get('/api/getBestToInvest', async (req, res) => {
   }
 });
 
+app.post('/api/getUserWatchList', async (req, res) => {
+  const { username } = req.body;
+  const usertableName = username; // Assuming table name is the same as the username
+
+  const params = {
+    TableName: usertableName,
+  };
+
+    const result = await dynamoDB.scan(params).promise();
+    const items = result.Items;
+
+    // Map the DynamoDB items to an array
+    const dataArray = [];
+
+    items.map((item) => dataArray.push(item.stocks));
+
+    res.send(dataArray);
+  
+});
+
+var dynamodbLC = new AWS.DynamoDB() //low-level client
+
+app.post('/api/addTickerToWatchlist', async (req, res) => {
+  const { username, stock } = req.body
+  const tableName = username;
+
+  // Define the parameters for the PutItem operation
+  const params = {
+    TableName: tableName,
+    Item: {
+      'stocks' : stock
+    }
+  };
+
+  try {
+    const tableExists = await dynamodbLC.waitFor('tableExists', { TableName: tableName }).promise();
+
+    if(!tableExists) {
+    // Create the table if it doesn't exist
+    await dynamodbLC.createTable({
+      TableName: tableName,
+      KeySchema: [
+        { AttributeName: 'stocks', KeyType: 'HASH' } // Using 'stocks' as the partition key
+      ],
+      AttributeDefinitions: [
+        { AttributeName: 'stocks', AttributeType: 'S' } // Using 'stocks' as String attribute
+      ],
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 5,  // Adjust based on your needs
+        WriteCapacityUnits: 5  // Adjust based on your needs
+      }
+    }).promise();
+
+    console.log(`Table "${tableName}" created successfully.`);
+  }
+
+    // Wait for the table to become active before adding the record
+
+    // Add the stock record to the table
+    await dynamoDB.put(params).promise();
+
+    console.log('Stock record added successfully.');
+    res.send({ "result" : "Stock record added successfully." })
+  } catch (error) {
+    console.error('Error:', error);
+  }
+});
+
 // Start the server
 app.listen(3000, () => {
   console.log('Server listening on port 3000');

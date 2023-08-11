@@ -1,5 +1,7 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Menu, Divider, Provider } from 'react-native-paper';
+
 import TheBestToInvest from './TheBestToInvest';
 import MyWatchlist from './MyWatchList';
 import WhatsNew from './WhatsNew';
@@ -20,7 +22,7 @@ export default function HomeScreen({ route }) {
   >
     <Tab.Screen
       name="The Best To invest"
-      component={TheBestToInvest}
+      children={({ navigation }) => <TheBestToInvest username={username} navigation={navigation} />}
       options={{
         tabBarLabel: 'The Best To invest',
         tabBarIcon: ({ color }) => (
@@ -30,7 +32,7 @@ export default function HomeScreen({ route }) {
     />
     <Tab.Screen
       name="My Watchlist"
-      component={MyWatchlist}
+      children={({ navigation }) => <MyWatchlist username={username} navigation={navigation} />}
       options={{
         tabBarLabel: 'My Watchlist',
         tabBarIcon: ({ color }) => (

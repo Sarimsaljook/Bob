@@ -4,12 +4,18 @@ import axios from 'axios';
 import StockTickerCard from './components/StockTickerCard';
 import AnimatedLoader from "react-native-animated-loader";
 
-export default function TheBestToInvest({ navigation, route }) {
+export default function TheBestToInvest({ navigation, route, username }) {
 
   const [top5BestStocks, setTop5BestStocks] = useState([]);
   const [top5Loaded, setTop5Loaded] = useState(false);
 
+  const [email, setEmail] = useState('');
+
   useEffect(() => {
+    if (username) {
+      setEmail(username);
+    }
+
     // Check if top5BestStocks is already populated, if yes, return early to avoid re-fetching.
     if (top5BestStocks.length > 0) {
       return;
@@ -21,6 +27,8 @@ export default function TheBestToInvest({ navigation, route }) {
                  setTop5Loaded(true);
             }).catch(error => console.log(error));
         }, []);
+
+     const name = email.split('@')[0];      
         
   return (     
              top5Loaded ?
@@ -28,7 +36,7 @@ export default function TheBestToInvest({ navigation, route }) {
         <View style={styles.container}>
            <Text style={styles.headingText}>Top 5 Best To Invest Today</Text>   
            <View style={styles.top5ListContainer}>
-              {top5BestStocks.map((stock, index) => <StockTickerCard symbol={stock} rank={index + 1}/>)}
+              {top5BestStocks.map((stock, index) => <StockTickerCard symbol={stock} rank={index + 1} username={name}/>)}
            </View>
         </View>
       </ScrollView> : 
