@@ -39,6 +39,7 @@ export default function HomeScreen({ route }) {
         }
       >  
        <Menu.Item onPress={() => navigation.navigate("Welcome")} title="Logout" />
+       <Menu.Item onPress={() => navigation.navigate("Learn More")} title="Learn More" />
        </Menu>
     <Tab.Navigator
     initialRouteName="The Best To invest"
