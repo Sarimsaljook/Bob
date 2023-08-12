@@ -47,7 +47,8 @@ export default function Login({ navigation }) {
                     navigation.navigate("Home", {
                       GeneralInvestmentSector : GeneralInvestmentSector,
                       PreferredTradingStyle : PreferredTradingStyle,
-                      username: email
+                      username: email,
+                      navigation: navigation
                     });
                }).catch((err) => console.log(err));
       }},

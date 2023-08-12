@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
   },
   top5ListContainer: {
     marginLeft: 50,
-    marginTop: 5
+    marginTop: 10
   }
 });
